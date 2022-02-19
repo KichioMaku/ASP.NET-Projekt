@@ -28,7 +28,7 @@ namespace Projekt_.net
             services.AddControllersWithViews();
 
             services.AddDbContext<AppDbContext>(config => config.UseSqlServer(Configuration.GetConnectionString("Application")));
-            
+
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
         }
 

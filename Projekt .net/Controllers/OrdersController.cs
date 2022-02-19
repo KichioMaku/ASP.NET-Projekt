@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Projekt_.net.Database;
 using Projekt_.net.Models;
 using Projekt_.net.Services;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_.net.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         //private readonly AppDbContext _dbContext;

@@ -10,10 +10,9 @@ using System.Threading.Tasks;
 
 namespace Projekt_.net.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrdersController : Controller
     {
-        //private readonly AppDbContext _dbContext;
         private readonly IOrderService _orderService;
 
         public OrdersController (IOrderService orderService)

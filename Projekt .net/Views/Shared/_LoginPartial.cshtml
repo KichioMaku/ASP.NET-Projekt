@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
-<ul class="navbar-nav">
+<ul class="nav navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
@@ -8,17 +8,17 @@
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-				<button type="submit" class="nav-link btn btn-link">Wyloguj się</button>
+				<button type="submit" class="btn btn-danger navbar-btn">Wyloguj się</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Zaloguj się</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login"><button class="btn btn-primary">Zaloguj się</button></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Zarejestruj się</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register"><button class="btn btn-danger navbar-btn">Zarejestruj się</button></a>
         </li>
     }
 </ul>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Projekt_.net.Database;
+using Projekt_.net.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Projekt_.net
             services.AddControllersWithViews();
 
             services.AddDbContext<AppDbContext>(config => config.UseSqlServer(Configuration.GetConnectionString("Application")));
+            services.AddTransient<IOrderService, OrderServices>();
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
         }

@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Projekt_.net.Services
 {
     public class OrderServices : IOrderService
     {
-        public Task Add(OrderModel order)
+        public Task Add(OrderModel product)
         {
             throw new NotImplementedException();
         }

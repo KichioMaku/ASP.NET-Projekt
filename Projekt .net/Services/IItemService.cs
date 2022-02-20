@@ -10,8 +10,8 @@ namespace Projekt_.net.Services
     public interface IItemService
     {
         Task Add(ItemModel item);
-        Task<IEnumerable<ItemEntity>> GetAll(string name);
+        Task<IEnumerable<Entities.ItemEntity>> GetAll(string name);
         Task Delete(int id);
-        Task Update(OrderModel order);
+        Task Edit(int id);
     }
 }

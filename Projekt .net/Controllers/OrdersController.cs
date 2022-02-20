@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_.net.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IOrderService _orderService;
@@ -30,6 +30,12 @@ namespace Projekt_.net.Controllers
         {
             await _orderService.Add(order);
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> List(string name)
+        {
+            var orders = await _orderService.GetAll(name);
+            return View(orders);
         }
     }
 }

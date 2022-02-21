@@ -15,7 +15,6 @@ namespace Projekt_.net.Entities
         public string Address { get; set; }
         public decimal NetOrderValue { get; set; }
         public string OrderDate { get; set; }
-        public string Status { get; set; }
         public OrderStatusEnum OrderStatusEnum { get; set; }
         public IdentityUser Owner { get; set; }
 

@@ -30,8 +30,6 @@ namespace Projekt_.net
 
             services.AddDbContext<AppDbContext>(config => config.UseSqlServer(Configuration.GetConnectionString("Application")));
             services.AddTransient<IOrderService, OrderServices>();
-            services.AddTransient<IItemService, ItemService>();
-
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
         }
 

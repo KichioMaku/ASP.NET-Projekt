@@ -13,5 +13,6 @@ namespace Projekt_.net.Services
         Task<IEnumerable<OrderEntity>> GetAll(string name);
         Task Delete(int id);
         Task Update(OrderModel order);
+        Task<OrderEntity> GetById(int id);
     }
 }

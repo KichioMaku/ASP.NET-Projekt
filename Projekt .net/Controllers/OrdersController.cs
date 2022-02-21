@@ -37,5 +37,20 @@ namespace Projekt_.net.Controllers
             var orders = await _orderService.GetAll(name);
             return View(orders);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var task = await _orderService.GetById(id);
+            if (task == null)
+            {
+                return View("ErrorViewModel");
+            }
+            await _orderService.Delete(id);
+            return View("List");
+        }
+        
+
     }
 }

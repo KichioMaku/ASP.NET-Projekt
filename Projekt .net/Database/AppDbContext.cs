@@ -11,7 +11,6 @@ namespace Projekt_.net.Database
     public class AppDbContext : IdentityDbContext
     {
         public DbSet<OrderEntity> Orders { get; set; }
-        public DbSet<ItemEntity> Items { get; set; }
         public AppDbContext(DbContextOptions options)
             : base(options)
         {

@@ -15,15 +15,14 @@ namespace Projekt_.net.Services
     public class OrderServices : IOrderService
     {
         private readonly AppDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public OrderServices(AppDbContext dbContext, UserManager<IdentityUser> userManager, IHttpContextAccessor
-            httpContextAccessor)
+        public OrderServices(AppDbContext dbContext, IHttpContextAccessor accessor, UserManager<IdentityUser> userManager)
         {
             _dbContext = dbContext;
+            _httpContextAccessor = accessor;
             _userManager = userManager;
-            _httpContextAccessor = httpContextAccessor;
         }
         public async Task Add(OrderModel order)
         {
@@ -35,16 +34,17 @@ namespace Projekt_.net.Services
                 Address = order.Address,
                 NetOrderValue = order.NetOrderValue,
                 OrderDate = order.OrderDate,
-                Status = order.Status,
+                OrderStatusEnum = order.OrderStatusEnum,
                 Owner = currentUser,
             };
             await _dbContext.Orders.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+       public async Task<OrderEntity> GetById(int id)
         {
-            throw new NotImplementedException();
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(u => u.Id == id);
+            return orderFromDb;
         }
 
         public async Task<IEnumerable<OrderEntity>> GetAll(string name)
@@ -56,12 +56,20 @@ namespace Projekt_.net.Services
             {
                 ordersQuery = ordersQuery.Where(x => x.Contractor.Contains(name));
             }
-            return await ordersQuery.ToListAsync();
+            var orders = await ordersQuery.ToListAsync();
+            return orders;
         }
 
         public Task Update(OrderModel order)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task Delete(int id)
+        {
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(u => u.Id == id);
+            _dbContext.Orders.Remove(orderFromDb);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Projekt_.net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Projekt_.net.Entities
         public decimal NetOrderValue { get; set; }
         public string OrderDate { get; set; }
         public string Status { get; set; }
+        public OrderStatusEnum OrderStatusEnum { get; set; }
         public IdentityUser Owner { get; set; }
 
     }

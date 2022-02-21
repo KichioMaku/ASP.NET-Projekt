@@ -23,7 +23,7 @@ namespace Projekt_.net.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Menu()
         {
             return View();
         }

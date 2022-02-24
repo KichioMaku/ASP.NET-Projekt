@@ -1,52 +1,40 @@
 ﻿@model OrderModel
 
 
-<h2>Dodaj nowe zamówienie</h2>
+<h2>Usuń zamówienie</h2>
 
-<form method="POST" asp-action="Add">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+<form method="GET" asp-action="DeletePost">
     <div class="form-group row">
-        @*<label for="input" class="col-sm-2 col-form-label">Nazwa kontrahenta</label>
-            <div class="col-sm-10">
-                <input asp-for="Contractor" class="form-control">
-            </div>*@
-
-        <label asp-for="Contractor" class="control-label"></label>
-        <input asp-for="Contractor" class="form-control" />
-        <span asp-validation-for="Contractor" class="text-danger"></span>
-
+        <label for="input" class="col-sm-2 col-form-label">Nazwa kontrahenta</label>
+        <div class="col-sm-10">
+            <input asp-for="Contractor" disabled class="form-control">
+        </div>
     </div>
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Zamówiony towar</label>
         <div class="col-sm-10">
-            <input asp-for="Items" class="form-control">
+            <input asp-for="Items" disabled class="form-control">
         </div>
-        <span asp-validation-for="Items" class="text-danger"></span>
     </div>
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Adres wysyłki</label>
         <div class="col-sm-10">
-            <input asp-for="Address" class="form-control">
+            <input asp-for="Address" disabled class="form-control">
         </div>
-        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Cena netto towaru</label>
         <div class="col-sm-10">
-            <input asp-for="NetOrderValue" class="form-control">
+            <input asp-for="NetOrderValue" disabled class="form-control">
         </div>
-        <span asp-validation-for="NetOrderValue" class="text-danger"></span>
     </div>
 
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Data zamówienia</label>
         <div class="col-sm-10">
-            <input asp-for="OrderDate" type="date" class="form-control" />
+            <input asp-for="OrderDate" disabled class="form-control" value="@DateTime.Now.ToString("dd.MM.yyyy")" />
         </div>
-        <span asp-validation-for="OrderDate" class="text-danger"></span>
     </div>
-    @*value="@DateTime.Now.ToString("dd.MM.yyyy")"*@
 
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Status zamówienia</label>
@@ -54,17 +42,18 @@
         <div class="col-sm-10">
             <input asp-for="OrderStatusEnum" class="form-control" value="Realizowane" />
         </div>
-        <span asp-validation-for="OrderStatusEnum" class="text-danger"></span>
-    </div>
-
-    <div class="form-group row">
-        <input type="submit" class="btn btn-success w-100 mt-3" value="Dodaj nowe zamówienie" />
     </div>
     <div class="form-group row">
         <a asp-action="List" class="btn btn-primary w-100">Lista zamówień</a>
     </div>
     <div class="form-group row">
         <a asp-controller="Home" asp-action="Menu" class="btn btn-primary w-100">Powrót do menu</a>
+    </div>
+</form>
+
+<form method="post">
+    <div class="form-group row">
+        <input type="submit" class="btn btn-danger w-100 mt-3" value="Delete" />
     </div>
 </form>
 @*<div class="col row">

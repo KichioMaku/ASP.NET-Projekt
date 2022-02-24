@@ -25,9 +25,16 @@ namespace Projekt_.net.Controllers
         {
             return View();
         }
+        
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Add(OrderModel order)
         {
+            if (!ModelState.IsValid) return View(order);
+
             await _orderService.Add(order);
             return View();
         }
@@ -37,15 +44,28 @@ namespace Projekt_.net.Controllers
             var orders = await _orderService.GetAll(name);
             return View(orders);
         }
-
+        [HttpGet]
+        public async Task<IActionResult> DeleteGet(int id)
+        {
+            if (id == null)
+            {
+                return View("Error");
+            }
+            var task = await _orderService.GetById(id);
+            if (task == null)
+            {
+                return View("Error");
+            }
+            return View();
+        }
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeletePost(int id)
         {
 
             var task = await _orderService.GetById(id);
             if (task == null)
             {
-                return View("ErrorViewModel");
+                return View("Error");
             }
             await _orderService.Delete(id);
             return View("List");

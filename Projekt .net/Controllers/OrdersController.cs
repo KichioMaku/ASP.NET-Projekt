@@ -36,6 +36,7 @@ namespace Projekt_.net.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Add(OrderModel order)
         {
@@ -89,7 +90,8 @@ namespace Projekt_.net.Controllers
         public async Task<IActionResult> Wyslano(int id)
         {
             var dbOrder = await _orderService.GetById(id);
-            if (id != dbOrder.Id) return View("Error");
+            if (id != dbOrder.Id) 
+                return View("Error");
             await _orderService.Wyslano(id);
             return RedirectToAction("Index");
         }

@@ -2,12 +2,15 @@
 @model IEnumerable<Projekt_.net.Entities.OrderEntity>
 
 
-<h2>Lista zamówień</h2>
+<h2>Lista zamówień wysłanych</h2>
 <form method="GET" class="form-inline mb-2">
     <input type="text" name="name" placeholder="Filter by name" class="form-control" />
-    <button type="submit" class="btn btn-primary ml-2">Wyszukaj zamówienie</button>
-    <div class="col">
-        <a asp-action="Add" class="btn btn-primary w-30">Dodaj nowe zamówienie</a>
+    <button type="submit" class="btn btn-primary ml-2 mr-1">Wyszukaj zamówienie</button>
+    <div>
+        <a asp-action="Add" class="btn btn-primary mr-1">Dodaj nowe zamówienie</a>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Zobacz zamówienia w trakcie realizacji</a>
     </div>
 </form>
 <table class="table table-bordered table-striped">

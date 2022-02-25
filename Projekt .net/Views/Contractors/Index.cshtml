@@ -1,0 +1,44 @@
+﻿@using Projekt_.net.Enums
+@model IEnumerable<Projekt_.net.Entities.ContractorsEntity>
+
+
+<h2>Lista kontrahentów</h2>
+<form method="GET" class="form-inline mb-2">
+    <input type="text" name="name" placeholder="Filter by name" class="form-control" />
+    <button type="submit" class="btn btn-primary ml-2 mr-1">Wyszukaj kontrahenta</button>
+    <div>
+        <a asp-action="Add" class="btn btn-primary mr-1">Dodaj nowego kontrahenta</a>
+    </div>
+</form>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nazwa kontrahenta</th>
+            <th>Adres e-mail</th>
+            <th>Adres kontrahenta</th>
+            <th>Numer telefonu</th>
+            <th>NIP</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContractorName</td>
+                <td>@item.EmailAddress </td>
+                <td>@item.Address</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.NIP</td>
+
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-controller="Orders" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Zmień</a>
+                        <a asp-controller="Orders" asp-action="DeleteGet" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Usuń</a>
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

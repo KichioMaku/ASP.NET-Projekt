@@ -70,8 +70,6 @@ namespace Projekt_.net.Controllers
             await _orderService.Update(order);
             return RedirectToAction("Index");
         }
-
-
         public async Task<IActionResult> DeleteGet(int id)
         {
             var order = await _orderService.GetById(id);
@@ -86,7 +84,6 @@ namespace Projekt_.net.Controllers
             await _orderService.Delete(id);
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> Wyslano(int id)
         {
             var dbOrder = await _orderService.GetById(id);

@@ -41,13 +41,11 @@
         <div class="col-sm-10">
             <input asp-for="OrderDate" type="date" class="form-control" />
         </div>
-        <span asp-validation-for="OrderDate" class="text-danger"></span>
+        <span asp-validation-for="OrderDate"class="text-danger"></span>
     </div>
-    @*value="@DateTime.Now.ToString("dd.MM.yyyy")"*@
 
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Status zamówienia</label>
-        @*<label asp-for="OrderDate" class="control-label"></label>*@
         <div class="col-sm-10">
             <select asp-for="OrderStatusEnum" class="form-control" asp-items="Html.GetEnumSelectList<OrderStatusEnum>()"></select>
         </div>
@@ -64,6 +62,3 @@
         <a asp-controller="Home" asp-action="Menu" class="btn btn-primary w-100">Powrót do menu</a>
     </div>
 </form>
-@*<div class="col row">
-        <a asp-action="List" class="btn btn-success w-50">Lista</a>
-    </div>*@

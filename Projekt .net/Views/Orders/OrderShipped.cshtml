@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Realizowane))
+        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Wyslane))
         {
             <tr>
                 <td>@item.Contractor</td>
@@ -36,8 +36,6 @@
                 <td>
                     <div class="btn-group" role="group">
                         <a asp-controller="Orders" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Zmień</a>
-                        <a asp-controller="Orders" asp-action="DeleteGet" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Usuń</a>
-                        <a asp-controller="Orders" asp-action="Wyslano" asp-route-Id="@item.Id" class="btn btn-success mx-1">Wysłano</a>
                     </div>
                 </td>
             </tr>

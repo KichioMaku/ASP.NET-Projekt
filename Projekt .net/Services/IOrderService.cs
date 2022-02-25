@@ -14,5 +14,7 @@ namespace Projekt_.net.Services
         Task Delete(int id);
         Task Update(OrderModel order);
         Task<OrderEntity> GetById(int id);
+        Task Wyslano(int id);
+
     }
 }

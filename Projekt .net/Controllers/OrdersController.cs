@@ -15,17 +15,23 @@ namespace Projekt_.net.Controllers
     {
         private readonly IOrderService _orderService;
 
-        public OrdersController (IOrderService orderService)
+        public OrdersController(IOrderService orderService)
         {
             _orderService = orderService;
         }
 
-        [HttpGet]
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index(string name)
         {
-            return View();
+            var orders = await _orderService.GetAll(name);
+            return View(orders);
         }
-        
+        public async Task<IActionResult> OrderShipped(string name)
+        {
+            var orders = await _orderService.GetAll(name);
+            return View(orders);
+        }
+
         public async Task<IActionResult> Add()
         {
             return View();
@@ -36,41 +42,56 @@ namespace Projekt_.net.Controllers
             if (!ModelState.IsValid) return View(order);
 
             await _orderService.Add(order);
-            return View();
+            return RedirectToAction("Index");
         }
-        [HttpGet]
-        public async Task<IActionResult> List(string name)
+
+        public async Task<IActionResult> Update(int id)
         {
-            var orders = await _orderService.GetAll(name);
-            return View(orders);
+            var order = await _orderService.GetById(id);
+            if (order == null) return View("Error");
+            var newOrder = new OrderModel()
+            {
+                Id = order.Id,
+                Contractor = order.Contractor,
+                Items = order.Items,
+                Address = order.Address,
+                NetOrderValue = order.NetOrderValue,
+                OrderDate = order.OrderDate,
+            };
+            return View(newOrder);
         }
-        [HttpGet]
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, OrderModel order)
+        {
+            if (id != order.Id) return View("Error");
+            if (!ModelState.IsValid) return View(order);
+            await _orderService.Update(order);
+            return RedirectToAction("Index");
+        }
+
+
         public async Task<IActionResult> DeleteGet(int id)
         {
-            if (id == null)
-            {
-                return View("Error");
-            }
-            var task = await _orderService.GetById(id);
-            if (task == null)
-            {
-                return View("Error");
-            }
-            return View();
+            var order = await _orderService.GetById(id);
+            if (order == null) return View("Error");
+            return View(order);
         }
         [HttpPost]
         public async Task<IActionResult> DeletePost(int id)
         {
-
-            var task = await _orderService.GetById(id);
-            if (task == null)
-            {
-                return View("Error");
-            }
+            var order = await _orderService.GetById(id);
+            if (order == null) return View("Error");
             await _orderService.Delete(id);
-            return View("List");
+            return RedirectToAction("Index");
         }
-        
 
+        public async Task<IActionResult> Wyslano(int id)
+        {
+            var dbOrder = await _orderService.GetById(id);
+            if (id != dbOrder.Id) return View("Error");
+            await _orderService.Wyslano(id);
+            return RedirectToAction("Index");
+        }
     }
 }

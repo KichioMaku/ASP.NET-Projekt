@@ -6,8 +6,10 @@ using Projekt_.net.Entities;
 using Projekt_.net.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
+using Projekt_.net.Enums;
 
 
 namespace Projekt_.net.Services
@@ -41,7 +43,7 @@ namespace Projekt_.net.Services
             await _dbContext.SaveChangesAsync();
         }
 
-       public async Task<OrderEntity> GetById(int id)
+        public async Task<OrderEntity> GetById(int id)
         {
             var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(u => u.Id == id);
             return orderFromDb;
@@ -60,9 +62,20 @@ namespace Projekt_.net.Services
             return orders;
         }
 
-        public Task Update(OrderModel order)
+        public async Task Update(OrderModel order)
         {
-            throw new NotImplementedException();
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == order.Id);
+            if (orderFromDb != null)
+            {
+                orderFromDb.Contractor = order.Contractor;
+                orderFromDb.Items = order.Items;
+                orderFromDb.Address = order.Address;
+                orderFromDb.NetOrderValue = order.NetOrderValue;
+                orderFromDb.OrderDate = order.OrderDate;
+                orderFromDb.OrderStatusEnum = order.OrderStatusEnum;
+            }
+
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
@@ -71,5 +84,16 @@ namespace Projekt_.net.Services
             _dbContext.Orders.Remove(orderFromDb);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task Wyslano(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Wyslane;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
     }
 }

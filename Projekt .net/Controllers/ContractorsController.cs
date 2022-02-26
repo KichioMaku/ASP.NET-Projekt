@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace Projekt_.net.Controllers
 {
     [Authorize]
-    public class ContractorController : Controller
+    public class ContractorsController : Controller
     {
         private readonly IContractorsService _contractorService;
 
-        public ContractorController(IContractorsService contractorService)
+        public ContractorsController(IContractorsService contractorService)
         {
             _contractorService = contractorService;
         }

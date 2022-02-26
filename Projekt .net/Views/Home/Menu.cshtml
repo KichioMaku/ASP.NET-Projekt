@@ -1,12 +1,23 @@
-﻿<div class="col">
-    <a asp-controller="Orders" asp-action="Add" class="btn btn-primary btn-lg btn-block mt-4">Dodaj nowe zamówienie</a>
+﻿<h2 class="text-center mt-4">Menu modułu zamówienia</h2>
+
+<div class="border-top border-bottom border-secondary">
+    <div class="col">
+        <a asp-controller="Orders" asp-action="Add" class="btn btn-primary btn-lg btn-block mt-3">Dodaj nowe zamówienie</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="Index" class="btn btn-primary btn-lg btn-block mt-4">Zobacz listę zamówień w trakcie realizacji</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="OrderShipped" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zobacz listę zamówień wysłanych</a>
+    </div>
 </div>
-<div class="col">
-	<a asp-controller="Contractors" asp-action="Add" class="btn btn-primary btn-lg btn-block mt-4">Dodaj nowego kontrahenta</a>
-</div>
-<div class="col">
-    <a asp-controller="Orders" asp-action="Index" class="btn btn-primary btn-lg btn-block mt-4">Zobacz listę zamówień w trakcie realizacji</a>
-</div>
-<div class="col">
-    <a asp-controller="Orders" asp-action="OrderShipped" class="btn btn-primary btn-lg btn-block mt-4">Zobacz listę zamówień wysłanych</a>
+
+<h2 class="text-center mt-4">Menu modułu kontrahenci</h2>
+<div class="border-top border-bottom border-secondary">
+    <div class="col">
+        <a asp-controller="Contractors" asp-action="Add" class="btn btn-primary btn-lg btn-block mt-3">Dodaj nowego kontrahenta</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Contractors" asp-action="Index" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zobacz listę kontrahentów</a>
+    </div>
 </div>

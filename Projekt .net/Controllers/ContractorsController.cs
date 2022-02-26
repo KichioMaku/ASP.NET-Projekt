@@ -20,17 +20,16 @@ namespace Projekt_.net.Controllers
             _contractorService = contractorService;
         }
 
-
         public async Task<IActionResult> Index(string name)
         {
             var contractors = await _contractorService.GetAll(name);
             return View(contractors);
         }
 
-        //public async Task<IActionResult> Add()
-        //{
-        //    return View();
-        //}
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Add(ContractorsModel contractor)

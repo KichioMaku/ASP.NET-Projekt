@@ -13,8 +13,18 @@ namespace Projekt_.net.Services
         Task<IEnumerable<OrderEntity>> GetAll(string name);
         Task Delete(int id);
         Task Update(OrderModel order);
+        Task Cancel(OrderModel order);
+        Task Return(OrderModel order);
+        Task Complaint(OrderModel order);
         Task<OrderEntity> GetById(int id);
-        Task Wyslano(int id);
+        Task Przyjete(int id);
+        Task Realizowane(int id);
+        Task Wyslane(int id);
+        Task Dostarczone(int id);
+        Task Zwrocone(int id);
+        Task Anulowane(int id);
+
+
 
     }
 }

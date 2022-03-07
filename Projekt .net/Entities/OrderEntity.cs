@@ -21,6 +21,12 @@ namespace Projekt_.net.Entities
         public decimal NetOrderValue { get; set; }
         [Required]
         public string OrderDate { get; set; }
+        public string CancellationReason { get; set; }
+        public string ReturnReason { get; set; }
+        public string Date { get; set; }
+        public string DeliveryDate { get; set; }
+        public string ReturnDate { get; set; }
+        public string ComplaintDate { get; set; }
         public OrderStatusEnum OrderStatusEnum { get; set; }
         public IdentityUser Owner { get; set; }
 

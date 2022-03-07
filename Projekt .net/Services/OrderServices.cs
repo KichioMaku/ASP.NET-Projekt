@@ -77,6 +77,56 @@ namespace Projekt_.net.Services
 
             await _dbContext.SaveChangesAsync();
         }
+        public async Task Cancel(OrderModel order)
+        {
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == order.Id);
+            if (orderFromDb != null)
+            {
+                orderFromDb.Contractor = order.Contractor;
+                orderFromDb.Items = order.Items;
+                orderFromDb.Address = order.Address;
+                orderFromDb.NetOrderValue = order.NetOrderValue;
+                orderFromDb.OrderDate = order.OrderDate;
+                orderFromDb.CancellationReason = order.CancellationReason;
+                orderFromDb.OrderStatusEnum = order.OrderStatusEnum;
+            }
+
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task Return(OrderModel order)
+        {
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == order.Id);
+            if (orderFromDb != null)
+            {
+                orderFromDb.Contractor = order.Contractor;
+                orderFromDb.Items = order.Items;
+                orderFromDb.Address = order.Address;
+                orderFromDb.NetOrderValue = order.NetOrderValue;
+                orderFromDb.OrderDate = order.OrderDate;
+                orderFromDb.Date = order.Date;
+                orderFromDb.ReturnDate = DateTime.Now.ToString();
+                orderFromDb.ReturnReason = order.ReturnReason;
+                orderFromDb.OrderStatusEnum = order.OrderStatusEnum;
+            }
+
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task Complaint(OrderModel order)
+        {
+            var orderFromDb = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == order.Id);
+            if (orderFromDb != null)
+            {
+                orderFromDb.Contractor = order.Contractor;
+                orderFromDb.Items = order.Items;
+                orderFromDb.Address = order.Address;
+                orderFromDb.NetOrderValue = order.NetOrderValue;
+                orderFromDb.OrderDate = order.OrderDate;
+                orderFromDb.CancellationReason = "Reklamacja";
+                orderFromDb.OrderStatusEnum = order.OrderStatusEnum;
+            }
+
+            await _dbContext.SaveChangesAsync();
+        }
 
         public async Task Delete(int id)
         {
@@ -85,15 +135,69 @@ namespace Projekt_.net.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Wyslano(int id)
+        public async Task Wyslane(int id)
         {
             var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
             if (dbOrder != null)
             {
-                dbOrder.OrderStatusEnum = OrderStatusEnum.Wyslane;
+                dbOrder.Date = DateTime.Now.ToString();
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Wysłane;
             }
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task Przyjete(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Przyjęte;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Realizowane(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Realizowane;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
+
+        public async Task Dostarczone(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.DeliveryDate = DateTime.Now.ToString();
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Dostarczone;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Zwrocone(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.ReturnDate = DateTime.Now.ToString();
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Zwrócone;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
+
+        public async Task Anulowane(int id)
+        {
+            var dbOrder = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            if (dbOrder != null)
+            {
+                dbOrder.OrderStatusEnum = OrderStatusEnum.Anulowane;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

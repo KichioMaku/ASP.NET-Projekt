@@ -17,9 +17,17 @@ namespace Projekt_.net.Models
         [Required]
         public string Address { get; set; }
         [Required]
+        [Range(0.01,double.MaxValue, ErrorMessage ="Only positive numbers allowed, greater than 0,01")]
         public decimal NetOrderValue { get; set; }
         [Required]
         public string OrderDate { get; set; }
+        public string CancellationReason { get; set; }
+        public string ReturnReason { get; set; }
+        public string Date { get; set; }
+        public string DeliveryDate { get; set; }
+        public string ReturnDate { get; set; }
+        public string ComplaintDate { get; set; }
+
         public OrderStatusEnum OrderStatusEnum { get; set; }
 
     }

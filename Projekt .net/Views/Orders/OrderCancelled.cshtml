@@ -2,7 +2,7 @@
 @model IEnumerable<Projekt_.net.Entities.OrderEntity>
 
 
-<h2>Lista zamówień wysłanych</h2>
+<h2>Lista zamówień anulowanych</h2>
 <form method="GET" class="form-inline mb-2">
     <input type="text" name="name" placeholder="Filter by name" class="form-control" />
     <button type="submit" class="btn btn-primary ml-2 mr-1">Wyszukaj zamówienie</button>
@@ -10,10 +10,7 @@
         <a asp-action="Add" class="btn btn-primary mr-1">Dodaj nowe zamówienie</a>
     </div>
     <div>
-        <a asp-action="OrderInProgress" class="btn btn-secondary mr-1">Zamówienia w realizacji</a>
-    </div>
-    <div>
-        <a asp-action="OrderDelivered" class="btn btn-secondary">Zamówienia dostarczone</a>
+        <a asp-action="Index" class="btn btn-primary">Zobacz zamówienia w trakcie realizacji</a>
     </div>
 </form>
 <table class="table table-bordered table-striped">
@@ -24,13 +21,12 @@
             <th>Adres wysyłki</th>
             <th>Wartość zamówienia</th>
             <th>Data zamówienia</th>
-            <th>Data wysłania</th>
             <th>Status zamówienia</th>
-            <th>Opcje</th>
+            <th>Powód anulowania</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Wysłane))
+        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Anulowane))
         {
         <tr>
             <td>@item.Contractor</td>
@@ -38,17 +34,8 @@
             <td>@item.Address</td>
             <td>@item.NetOrderValue</td>
             <td>@item.OrderDate</td>
-            <td>@item.Date</td>
             <td>@item.OrderStatusEnum</td>
-
-            <td>
-                <div class="btn-group" role="group">
-                    <a asp-controller="Orders" asp-action="Dostarczone" asp-route-Id="@item.Id" class="btn btn-success mx-1">Doręczone</a>
-                </div>
-                <div class="btn-group" role="group">
-                    <a asp-controller="Orders" asp-action="Return" asp-route-Id="@item.Id" class="btn btn-danger mx-1 mt-1">Zwrot</a>
-                </div>
-            </td>
+            <td>@item.CancellationReason</td>
         </tr>
 
         }

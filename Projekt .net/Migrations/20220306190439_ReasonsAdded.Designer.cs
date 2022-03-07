@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projekt_.net.Database;
 
 namespace Projekt_.net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220306190439_ReasonsAdded")]
+    partial class ReasonsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,9 +270,6 @@ namespace Projekt_.net.Migrations
                     b.Property<string>("CancellationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ComplaintDate")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ComplaintDecision")
                         .HasColumnType("nvarchar(max)");
 
@@ -279,9 +278,6 @@ namespace Projekt_.net.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeliveryDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Items")
@@ -300,9 +296,6 @@ namespace Projekt_.net.Migrations
 
                     b.Property<string>("OwnerId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ReturnDate")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReturnReason")
                         .HasColumnType("nvarchar(max)");

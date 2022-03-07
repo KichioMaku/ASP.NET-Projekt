@@ -47,7 +47,7 @@
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">Status zamówienia</label>
         <div class="col-sm-10">
-            <select asp-for="OrderStatusEnum" class="form-control" asp-items="Html.GetEnumSelectList<OrderStatusEnum>()"></select>
+            <input asp-for="OrderStatusEnum" class="form-control" readonly></input>
         </div>
         <span asp-validation-for="OrderStatusEnum" class="text-danger"></span>
     </div>

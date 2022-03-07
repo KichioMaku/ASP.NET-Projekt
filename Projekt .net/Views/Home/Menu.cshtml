@@ -5,10 +5,22 @@
         <a asp-controller="Orders" asp-action="Add" class="btn btn-primary btn-lg btn-block mt-3">Dodaj nowe zamówienie</a>
     </div>
     <div class="col">
-        <a asp-controller="Orders" asp-action="Index" class="btn btn-primary btn-lg btn-block mt-4">Zobacz listę zamówień w trakcie realizacji</a>
+        <a asp-controller="Orders" asp-action="Index" class="btn btn-primary btn-lg btn-block mt-4">Zamówienia przyjęte</a>
     </div>
     <div class="col">
-        <a asp-controller="Orders" asp-action="OrderShipped" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zobacz listę zamówień wysłanych</a>
+        <a asp-controller="Orders" asp-action="OrderInProgress" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zamówienia realizowane</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="OrderShipped" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zamówienia wysłane</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="OrderDelivered" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zamówienia dostarczone</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="OrderReturned" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zamówienia zwrócone</a>
+    </div>
+    <div class="col">
+        <a asp-controller="Orders" asp-action="OrderCancelled" class="btn btn-primary btn-lg btn-block mt-4 mb-3">Zamówienia anulowane</a>
     </div>
 </div>
 

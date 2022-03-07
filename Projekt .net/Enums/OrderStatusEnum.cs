@@ -7,7 +7,11 @@ namespace Projekt_.net.Enums
 {
     public enum OrderStatusEnum
     {
+        Przyjęte,
         Realizowane,
-        Wyslane
+        Wysłane,
+        Dostarczone,
+        Zwrócone,
+        Anulowane
     }
 }

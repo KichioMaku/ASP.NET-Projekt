@@ -2,15 +2,18 @@
 @model IEnumerable<Projekt_.net.Entities.OrderEntity>
 
 
-<h2>Lista zamówień do przyjęcia</h2>
+<h2>Lista zamówień w realizacji</h2>
 <form method="GET" class="form-inline mb-2">
-    <input type="text" name="name" placeholder="Filtruj po kontrahencie" class="form-control" />
+    <input type="text" name="name" placeholder="Filter by name" class="form-control" />
     <button type="submit" class="btn btn-primary ml-2 mr-1">Wyszukaj zamówienie</button>
     <div>
         <a asp-action="Add" class="btn btn-primary mr-1">Dodaj nowe zamówienie</a>
     </div>
     <div>
-        <a asp-action="OrderInProgress" class="btn btn-secondary ">Zamówienia w realizacji</a>
+        <a asp-action="Index" class="btn btn-secondary mr-1">Zamówienia przyjęte</a>
+    </div>
+    <div>
+        <a asp-action="OrderShipped" class="btn btn-secondary mr-1">Zamówienia wysłane</a>
     </div>
 </form>
 <table class="table table-bordered table-striped">
@@ -26,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Przyjęte))
+        @foreach (var item in Model.Where(i => i.OrderStatusEnum == OrderStatusEnum.Realizowane))
         {
             <tr>
                 <td>@item.Contractor</td>
@@ -38,9 +41,10 @@
 
                 <td>
                     <div class="btn-group" role="group">
-                        <a asp-controller="Orders" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Edytuj</a>
-                        <a asp-controller="Orders" asp-action="DeleteGet" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Usuń</a>
-                        <a asp-controller="Orders" asp-action="Realizowane" asp-route-Id="@item.Id" class="btn btn-success mx-1">Realizowane</a>
+                        <a asp-controller="Orders" asp-action="Wyslane" asp-route-Id="@item.Id" class="btn btn-success mx-1">Wysłano</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a asp-controller="Orders" asp-action="Cancel" asp-route-Id="@item.Id" class="btn btn-danger mx-1 mt-1">Anulowane</a>
                     </div>
                 </td>
             </tr>
